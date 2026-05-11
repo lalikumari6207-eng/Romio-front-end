@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Roomio Interactive UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    }
+
+    body{
+    background:#ececec;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    }
+
+    .phone{
+    width:390px;
+    height:844px;
+    background:#fff;
+    border-radius:40px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .screen{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:100%;
+    padding:25px;
+    background:#fff;
+    transition:0.6s;
+    overflow-y:auto;
+    }
+
+    .active{
+    left:0;
+    }
+
+    .hidden-left{
+    left:-100%;
+    }
+
+    .center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    }
+
+    /* Splash */
+
+    .splash{
+    background:linear-gradient(to bottom,#f7f3ff,#ebe2ff);
+    }
+
+    .logo{
+    width:120px;
+    height:120px;
+    background:#6C4DFF;
+    border-radius:35px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:70px;
+    color:#fff;
+    margin-top:180px;
+    box-shadow:0 10px 30px rgba(108,77,255,0.3);
+    }
+
+    .title{
+    font-size:44px;
+    font-weight:700;
+    margin-top:25px;
+    }
+
+    .sub{
+    margin-top:8px;
+    color:#666;
+    }
+
+    .bottom-bg{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:240px;
+    background:linear-gradient(to bottom,#d8c9ff,#b699ff);
+    border-top-left-radius:40px;
+    border-top-right-radius:40px;
+    }
+
+    .progress{
+    width:220px;
+    height:10px;
+    background:rgba(255,255,255,0.4);
+    border-radius:30px;
+    overflow:hidden;
+    margin:auto;
+    margin-top:140px;
+    }
+
+    .progress div{
+    height:100%;
+    width:120px;
+    background:#6C4DFF;
+    animation:load 3s infinite;
+    }
+
+    @keyframes load{
+    0%{width:40px;}
+    50%{width:170px;}
+    100%{width:120px;}
+    }
+
+    .loading{
+    text-align:center;
+    margin-top:18px;
+    color:#fff;
+    font-size:15px;
+    }
+
+    /* Common */
+
+    h1{
+    font-size:34px;
+    margin-top:10px;
+    }
+
+    .small{
+    color:#666;
+    font-size:14px;
+    margin-top:6px;
+    }
+
+    .input{
+    margin-top:18px;
+    }
+
+    .input label{
+    font-size:13px;
+    color:#555;
+    display:block;
+    margin-bottom:7px;
+    }
+
+    .input input,
+    .input select{
+    width:100%;
+    height:55px;
+    border:1px solid #ddd;
+    border-radius:15px;
+    padding:0 16px;
+    font-size:15px;
+    outline:none;
+    }
+
+    .btn{
+    width:100%;
+    height:55px;
+    border:none;
+    background:#6C4DFF;
+    color:#fff;
+    border-radius:16px;
+    font-size:16px;
+    font-weight:600;
+    margin-top:25px;
+    cursor:pointer;
+    }
+
+    .otp{
+    display:flex;
+    gap:10px;
+    margin-top:35px;
+    justify-content:center;
+    }
+
+    .otp input{
+    width:55px;
+    height:60px;
+    border:1px solid #ddd;
+    border-radius:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:600;
+    }
+
+    .permission{
+    border:1px solid #ddd;
+    border-radius:18px;
+    padding:15px;
+    margin-top:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    }
+
+    .search{
+    height:52px;
+    background:#f3f3f3;
+    border-radius:16px;
+    padding:0 15px;
+    display:flex;
+    align-items:center;
+    margin-top:20px;
+    }
+
+    .categories{
+    display:flex;
+    gap:12px;
+    overflow:auto;
+    margin-top:20px;
+    }
+
+    .categories::-webkit-scrollbar{
+    display:none;
+    }
+
+    .cat{
+    min-width:85px;
+    height:85px;
+    background:#f6f2ff;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-size:13px;
+    }
+
+    .room-card{
+    margin-top:22px;
+    border-radius:22px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .room-img{
+    height:210px;
+    background:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop') center/cover;
+    }
+
+    .room-info{
+    padding:16px;
+    }
+
+    .price{
+    font-size:30px;
+    font-weight:700;
+    }
+
+    .tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:12px;
+    }
+
+    .tag{
+    padding:8px 14px;
+    background:#f1f1f1;
+    border-radius:30px;
+    font-size:12px;
+    }
+
+    .bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:75px;
+    background:#fff;
+    border-top:1px solid #eee;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    }
+
+    .add-btn{
+    width:60px;
+    height:60px;
+    background:#6C4DFF;
+    border-radius:50%;
+    color:#fff;
+    font-size:32px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:-35px;
+    }
+
+    </style></head>
+    <body><div class="phone"><!-- Splash --><div class="screen splash active" id="splash">
+    <div class="center">
+    <div class="logo">🏠</div>
+    <div class="title">Roomio</div>
+    <div class="sub">Find. Rent. Live Easy</div>
+    </div><div class="bottom-bg">
+    <div class="progress"><div></div></div>
+    <div class="loading">Finding best rooms for you...</div>
+    </div>
+    </div><!-- Login --><div class="screen" id="login">
+    <h2>Welcome to</h2>
+    <h1>Roomio 👋</h1>
+    <p class="small">Enter your details to continue</p><div class="input">
+    <label>Full Name</label>
+    <input type="text" placeholder="Rohit Kumar">
+    </div><div class="input">
+    <label>Email or Mobile</label>
+    <input type="text" placeholder="rohit@gmail.com">
+    </div><div class="input">
+    <label>Select State</label>
+    <select>
+    <option>Bihar</option>
+    <option>Delhi</option>
+    </select>
+    </div><div class="input">
+    <label>Select City</label>
+    <select>
+    <option>Begusarai</option>
+    <option>Patna</option>
+    </select>
+    </div><button class="btn" onclick="nextScreen('login','otp')">Continue</button>
+
+    </div><!-- OTP --><div class="screen" id="otp">
+    <h1>Verify Account</h1>
+    <p class="small">We have sent OTP to your email</p><div class="otp">
+    <input maxlength="1">
+    <input maxlength="1">
+    <input maxlength="1">
+    <input maxlength="1">
+    </div><button class="btn" onclick="nextScreen('otp','location')">Verify & Continue</button>
+
+    </div><!-- Location --><div class="screen" id="location">
+    <div class="center" style="margin-top:80px;">
+    <div style="font-size:120px;">📍</div>
+    <h1 style="text-align:center; font-size:32px;">Location Access</h1>
+    <p class="small" style="text-align:center;">Allow location to find nearby rooms</p>
+    </div><div class="permission">
+    <div>
+    <h4>Allow all the time</h4>
+    <p class="small">Best Results</p>
+    </div>
+    <input type="radio" checked>
+    </div><div class="permission">
+    <div>
+    <h4>Only while using app</h4>
+    </div>
+    <input type="radio">
+    </div><button class="btn" onclick="nextScreen('location','home')">Continue</button>
+
+    </div><!-- Home --><div class="screen" id="home">
+    <h2>Hello, Rohit 👋</h2>
+    <p class="small">Begusarai, Bihar</p><div class="search">🔍 Search PG, Hostel, Rooms...</div><div class="categories">
+    <div class="cat">🏠<br>PG</div>
+    <div class="cat">🏨<br>Hostel</div>
+    <div class="cat">👨‍👩‍👧<br>Family</div>
+    <div class="cat">🛏️<br>Bachelor</div>
+    <div class="cat">💼<br>Office</div>
+    </div><div class="room-card" onclick="nextScreen('home','details')">
+    <div class="room-img"></div>
+    <div class="room-info">
+    <div class="price">₹5,000</div>
+    <h3>Nice PG Near Railway Station</h3>
+    <p class="small">Begusarai, Bihar</p>
+    <div class="tags">
+    <div class="tag">WiFi</div>
+    <div class="tag">Food</div>
+    <div class="tag">AC</div>
+    </div>
+    </div>
+    </div><div class="bottom-nav">
+    <div>🏠</div>
+    <div>🔍</div>
+    <div class="add-btn" onclick="nextScreen('home','add1')">+</div>
+    <div>💬</div>
+    <div>☰</div>
+    </div>
+    </div><!-- Room Detail --><div class="screen" id="details">
+    <div class="room-img" style="height:280px;"></div>
+    <div class="room-info">
+    <div class="price">₹5,000/month</div>
+    <h2>Nice PG Near Railway Station</h2>
+    <p class="small">Begusarai, Bihar</p><div class="tags">
+    <div class="tag">WiFi</div>
+    <div class="tag">Food</div>
+    <div class="tag">AC</div>
+    <div class="tag">Parking</div>
+    </div><h3 style="margin-top:25px;">Details</h3>
+    <p class="small" style="line-height:30px;">
+    ✔ Fully Furnished<br>
+    ✔ Attached Washroom<br>
+    ✔ Power Backup<br>
+    ✔ 24×7 Water
+    </p><button class="btn">Call Owner</button> <button class="btn" style="background:#fff;color:#6C4DFF;border:2px solid #6C4DFF;">Chat</button>
+
+    </div>
+    </div><!-- Add Property 1 --><div class="screen" id="add1">
+    <h1>Add Property</h1>
+    <p class="small">Basic Information</p><div class="input">
+    <label>Property Name</label>
+    <input placeholder="Nice PG Near College">
+    </div><div class="input">
+    <label>Property Type</label>
+    <select>
+    <option>PG</option>
+    <option>Hostel</option>
+    </select>
+    </div><div class="input">
+    <label>Address</label>
+    <input placeholder="Near Lohiya Nagar">
+    </div><button class="btn" onclick="nextScreen('add1','add2')">Next</button>
+
+    </div><!-- Add Property 2 --><div class="screen" id="add2">
+    <h1>Price & Details</h1><div class="input">
+    <label>Rent Per Month</label>
+    <input placeholder="5000">
+    </div><div class="input">
+    <label>Security Deposit</label>
+    <input placeholder="10000">
+    </div><div class="input">
+    <label>Room Type</label>
+    <select>
+    <option>2 Sharing</option>
+    <option>Single</option>
+    </select>
+    </div><button class="btn" onclick="nextScreen('add2','add3')">Next</button>
+
+    </div><!-- Add Property 3 --><div class="screen" id="add3">
+    <h1>Upload Photos</h1><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;">
+    <div class="room-img" style="height:140px;border-radius:18px;"></div>
+    <div class="room-img" style="height:140px;border-radius:18px;"></div>
+    <div class="room-img" style="height:140px;border-radius:18px;"></div>
+    <div style="height:140px;border:2px dashed #bbb;border-radius:18px;display:flex;justify-content:center;align-items:center;font-size:40px;">+</div>
+    </div><button class="btn" onclick="nextScreen('add3','home')">Submit Property</button>
+
+    </div></div><script>
+    setTimeout(()=>{
+    nextScreen('splash','login')
+    },5000)
+
+    function nextScreen(current,next){
+    document.getElementById(current).classList.remove('active')
+    document.getElementById(current).classList.add('hidden-left')
+    document.getElementById(next).classList.add('active')
+    }
+    </script></body>
+    </html>
+    
